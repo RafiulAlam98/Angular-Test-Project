@@ -1,7 +1,9 @@
-import { LoginComponent } from './../login/login.component';
 import { Component, OnInit } from '@angular/core';
 
+import { LoginComponent } from './../login/login.component';
 import { NzButtonModule } from 'ng-zorro-antd/button';
+import { OAuthService } from 'angular-oauth2-oidc';
+import { authCodeFlowConfig } from '../../auth/auth.config';
 
 @Component({
   selector: 'app-welcome',
@@ -11,7 +13,7 @@ import { NzButtonModule } from 'ng-zorro-antd/button';
   styleUrls: ['./welcome.component.scss'],
 })
 export class WelcomeComponent implements OnInit {
-  constructor() {}
+  constructor(private oauthService: OAuthService) {}
 
   ngOnInit() {}
 }

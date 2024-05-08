@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { NzButtonModule } from 'ng-zorro-antd/button';
-import { OidcSecurityService } from 'angular-auth-oidc-client';
-import { authConfig } from '../../auth/auth.config';
+import { OAuthService } from 'angular-oauth2-oidc';
 
 @Component({
   selector: 'app-login',
@@ -12,16 +11,10 @@ import { authConfig } from '../../auth/auth.config';
   styleUrl: './login.component.scss',
 })
 export class LoginComponent implements OnInit {
-  constructor(private oidcSecurityService: OidcSecurityService) {}
-  ngOnInit() {
-    this.oidcSecurityService.checkAuth().subscribe((loginResponse) => {
-      const { isAuthenticated, userData, accessToken, idToken, configId } =
-        loginResponse;
-      console.log(loginResponse);
-    });
-  }
+  constructor(private oauthService: OAuthService) {}
+  ngOnInit() {}
 
   handleLogin() {
-    this.oidcSecurityService.authorize();
+    this.oauthService.initCodeFlow();
   }
 }
