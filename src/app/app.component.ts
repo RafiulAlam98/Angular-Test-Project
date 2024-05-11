@@ -25,13 +25,34 @@ import { authCodeFlowConfig } from './auth/auth.config';
 })
 export class AppComponent implements OnInit {
   isCollapsed = false;
+  title = 'oidc-demo';
 
-  constructor(private oauthService: OAuthService) {
-    this.oauthService.configure(authCodeFlowConfig);
-    this.oauthService.loadDiscoveryDocumentAndTryLogin();
-  }
+  isLoggedIn = false;
+
+  constructor(private oauthService: OAuthService) {}
   ngOnInit(): void {
-    console.log(this.oauthService.getAccessToken());
-    this.oauthService.loadUserProfile().then((user) => console.log(user));
+    this.oauthService.configure(authCodeFlowConfig);
+    this.oauthService.loadDiscoveryDocumentAndTryLogin().then(() => {
+      this.isLoggedIn = this.oauthService.hasValidAccessToken();
+
+      if (this.isLoggedIn) {
+        var token = this.oauthService.getIdToken();
+
+        console.log('token', token);
+
+        this.oauthService.loadUserProfile().then((profile) => {
+          console.log('profile', profile);
+        });
+      }
+    });
+    this.oauthService.setupAutomaticSilentRefresh();
+  }
+
+  login() {
+    this.oauthService.initCodeFlow();
+  }
+
+  logout() {
+    this.oauthService.logOut();
   }
 }

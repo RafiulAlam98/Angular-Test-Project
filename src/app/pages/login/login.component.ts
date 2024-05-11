@@ -13,8 +13,11 @@ import { OAuthService } from 'angular-oauth2-oidc';
 export class LoginComponent implements OnInit {
   constructor(private oauthService: OAuthService) {}
   ngOnInit() {}
-
-  handleLogin() {
+  login() {
     this.oauthService.initCodeFlow();
+  }
+
+  logout() {
+    this.oauthService.logOut();
   }
 }
