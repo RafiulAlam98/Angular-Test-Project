@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 
-import { NzButtonModule } from 'ng-zorro-antd/button';
+
 import { OAuthService } from 'angular-oauth2-oidc';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [NzButtonModule],
+  imports: [],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',
 })
