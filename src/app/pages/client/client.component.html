@@ -26,7 +26,21 @@
             <td>{{ client.name  }}</td>
             <td>{{ client.logo  }}</td>
             <td>
-                <button (click)="deleteClient(client.id)" class="btn btn-warning" type="submit">Delete</button>
+            <button class="btn btn-warning" (click)="confirmationModal.open(content)">Delete Data</button>
+            <ng-template #content let-modal>
+                <div class="modal-header">
+                    <h4 class="modal-title" id="modal-basic-title">Confirm Deletion</h4>
+            
+                </div>
+                <div class="modal-body">
+                    <p>Are you sure you want to delete?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" (click)="deleteClient(client.id)">Confirm</button>
+                    <button type="button" class="btn btn-secondary" (click)="confirmationModal.cancel()">Cancel</button>
+                </div>
+            </ng-template>
+            <app-confirmation-modal #confirmationModal (confirmed)="handleConfirmation($event)"></app-confirmation-modal>
             </td>
         </tr>
         }
