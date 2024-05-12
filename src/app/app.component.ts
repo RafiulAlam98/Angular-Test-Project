@@ -3,11 +3,12 @@ import { RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { LoginResponse, OidcSecurityService } from 'angular-auth-oidc-client';
+import { ClientComponent } from './pages/client/client.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, CommonModule],
+  imports: [RouterOutlet, CommonModule, ClientComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
@@ -74,14 +75,5 @@ export class AppComponent implements OnInit {
       });
   }
 
-  deleteClient(id: string) {
-    if (confirm('Are you sure you want to delete this client?')) {
-      this.http
-        .delete<any>('https://api.prohelika.com/api/client/' + id)
-        .subscribe((data) => {
-          console.log('data', data);
-          this.getClients();
-        });
-    }
-  }
+
 }
