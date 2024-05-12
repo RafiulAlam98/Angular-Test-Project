@@ -4,11 +4,12 @@ import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { LoginResponse, OidcSecurityService } from 'angular-auth-oidc-client';
 import { ClientComponent } from './pages/client/client.component';
+import { ClientAddComponent } from './pages/client-add/client-add.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, CommonModule, ClientComponent],
+  imports: [RouterOutlet, CommonModule, ClientComponent, ClientAddComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
@@ -74,6 +75,4 @@ export class AppComponent implements OnInit {
         this.getClients();
       });
   }
-
-
 }
