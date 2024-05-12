@@ -1,4 +1,14 @@
-<button *ngIf="!isLoggedIn" class="" (click)="login()" nz-button nzType="primary">Login</button>
+<button *ngIf="!isLoggedIn" (click)="login()">Login</button>
+<h3>Welcome {{userName}}</h3>
+<div *ngIf="isLoggedIn">
 
+    <button (click)="logout()">Logout</button>
+    </div>
 
-    <button *ngIf="isLoggedIn" class="" (click)="logout()" nz-button nzType="primary">Logout</button>
+<div *ngIf="clients">
+    <div *ngFor="let client of clients">
+        {{client.name}} <button class="" (click)="deleteClient(client.id)">Delete</button>
+    </div>
+</div>
+
+<button (click)="createClient()">Create Client</button>

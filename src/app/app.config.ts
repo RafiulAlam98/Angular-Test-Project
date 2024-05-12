@@ -1,14 +1,16 @@
-import { ApplicationConfig, importProvidersFrom } from '@angular/core';
-import en from '@angular/common/locales/en';
-import { provideHttpClient } from '@angular/common/http';
-
-import { provideOAuthClient } from 'angular-oauth2-oidc';
+import { ApplicationConfig } from '@angular/core';
 import { provideRouter } from '@angular/router';
-import { registerLocaleData } from '@angular/common';
-import { routes } from './app.routes';
 
-registerLocaleData(en);
+import { routes } from './app.routes';
+import { provideHttpClient, withInterceptors } from '@angular/common/http';
+import { authInterceptor } from './auth/auth.interceptor';
+import { provideAuth } from 'angular-auth-oidc-client';
+import { authConfig } from './auth/auth.config';
 
 export const appConfig: ApplicationConfig = {
-  providers: [provideRouter(routes), provideHttpClient(), provideOAuthClient(),importProvidersFrom()],
+  providers: [
+    provideRouter(routes),
+    provideHttpClient(withInterceptors([authInterceptor])),
+    provideAuth(authConfig),
+  ],
 };
