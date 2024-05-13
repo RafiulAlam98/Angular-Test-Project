@@ -21,7 +21,8 @@
             <td>{{ client.name  }}</td>
             <td>{{ client.logo  }}</td>
             <td>
-            <button class="btn btn-warning" (click)="confirmationModal.open(content)">Delete Data</button>
+            <button class="btn btn-warning" (click)="confirmationModal.open(content)">Delete</button>
+            <button class="btn btn-warning" (click)="confirmationModal.open(content)">Edit</button>
             <ng-template #content let-modal>
                 <div class="modal-header">
                     <h4 class="modal-title" id="modal-basic-title">Confirm Deletion</h4>
