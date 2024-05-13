@@ -2,11 +2,12 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Client } from '../../../interfaces/client.interface';
 import { ConfirmationModalComponent } from '../../components/common/confirmation-modal/confirmation-modal.component';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-client',
   standalone: true,
-  imports: [ConfirmationModalComponent],
+  imports: [ConfirmationModalComponent, CommonModule],
   templateUrl: './client.component.html',
   styleUrl: './client.component.scss',
 })
