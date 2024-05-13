@@ -1,11 +1,17 @@
-<form (ngSubmit)="onSubmit()">
+<h4 class="add-client-heading"><span>Add Client</span></h4>
+<form [formGroup]="addClient" (ngSubmit)="saveData()">
     <div class="form-group">
-        <label for="title">Title</label>
-        <input type="text" class="form-control" id="title" name="title" required>
+        <label for="title" class="mb-2">Name</label>
+        <input class="mb-2" type="text" class="form-control" id="title" name="title" required placeholder="Enter Name"
+            formControlName="name">
     </div>
-    <div class="form-group">
-        <label for="description">Description</label>
-        <textarea class="form-control" id="description" name="description" required></textarea>
+    <div class="form-group mt-2">
+        <label class="mb-2" for="description">Logo</label>
+        <input type="text" class="form-control" name="title" required placeholder="Enter Logo" formControlName="logo">
     </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
+        <div class="form-group mt-2">
+            <label class="mb-2" for="description">Url</label>
+            <input type="text" class="form-control" name="title" required placeholder="Enter Url" formControlName="url">
+        </div>
+        <button type="submit" class="btn btn-primary mt-4">Submit</button>
 </form>

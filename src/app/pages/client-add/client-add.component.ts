@@ -1,33 +1,33 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
+import {
+  FormControl,
+  FormGroup,
+  FormsModule,
+  ReactiveFormsModule,
+} from '@angular/forms';
 
 @Component({
   selector: 'app-client-add',
   standalone: true,
-  imports: [],
+  imports: [ReactiveFormsModule],
   templateUrl: './client-add.component.html',
   styleUrl: './client-add.component.scss',
 })
 export class ClientAddComponent {
-  postData: any = {};
-
   constructor(private http: HttpClient) {}
 
-  onSubmit(): void {
-    // Send HTTP POST request to your backend API
-    this.http.post<any>('YOUR_BACKEND_API_URL', this.postData).subscribe(
-      (response) => {
-        console.log('Data posted successfully:', response);
-        // Optionally, you can reset the form here
-        this.resetForm();
-      },
-      (error) => {
-        console.error('Error posting data:', error);
-      }
-    );
-  }
+  addClient = new FormGroup({
+    name: new FormControl(''),
+    logo: new FormControl(''),
+    url: new FormControl(''),
+  });
 
-  resetForm(): void {
-    this.postData = {};
+  saveData(): void {
+    this.http
+      .post<any>('https://api.prohelika.com/api/client', this.addClient.value)
+      .subscribe((data) => {
+        console.log('data', data);
+      });
   }
 }

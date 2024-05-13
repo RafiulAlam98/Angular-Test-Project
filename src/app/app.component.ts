@@ -61,18 +61,5 @@ export class AppComponent implements OnInit {
       });
   }
 
-  createClient() {
-    var body = {
-      name: 'string',
-      logo: 'string',
-      url: 'string',
-    };
 
-    this.http
-      .post<any>('https://api.prohelika.com/api/client', body)
-      .subscribe((data) => {
-        console.log('data', data);
-        this.getClients();
-      });
-  }
 }
