@@ -18,12 +18,33 @@ import {
 export class ClientAddComponent {
   constructor(private http: HttpClient) {}
   message: boolean = false;
+  url: string = '';
 
   addClient = new FormGroup({
     name: new FormControl(''),
     logo: new FormControl(''),
     url: new FormControl(''),
   });
+
+  uploadFile(file: File) {
+    const formData = new FormData();
+    formData.append('file', file);
+
+    return this.http.post('https://files.prohelika.com/api/file', formData);
+  }
+
+  onFileSelected(event: any) {
+    const file: File = event.target.files[0];
+    console.log(file);
+    this.uploadFile(file).subscribe(
+      (response) => {
+        console.log('File uploaded successfully', response);
+      },
+      (error) => {
+        console.error('Error uploading file', error);
+      }
+    );
+  }
 
   saveData(): void {
     this.http
